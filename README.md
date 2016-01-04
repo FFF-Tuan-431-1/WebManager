@@ -6,7 +6,7 @@
 - 安装依赖 `npm install`
 - 编译前端样式 `npm run build`
 - 开启后端服务器 `npm start`
-- 客户端开启 socket 连接 `node client/index`
+- 客户端开启 socket 连接 `npm run client`
 
 ## 结构说明
 

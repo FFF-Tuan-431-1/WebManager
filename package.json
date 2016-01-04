@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "start": "DEBUG=wb* node ./bin/www",
-    "build": "./node_modules/.bin/gulp"
+    "build": "./node_modules/.bin/gulp css",
+    "watch": "./node_modules/.bin/gulp",
+    "client": "node client/app"
   },
   "dependencies": {
     "body-parser": "~1.13.2",
