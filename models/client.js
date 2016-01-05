@@ -15,6 +15,10 @@ var Client = db.define('client', {
     type: Sequelize.STRING,
     unique: true,
     defaultValue: null
+  },
+  isOnline: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
   }
 });
 
