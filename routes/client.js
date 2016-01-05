@@ -73,7 +73,15 @@ router.get('/:id/ping', (req, res) => {
  * ip 放在 req.body 中
  */
 router.post('/ping', (req, res) => {
-
+  ip = req.body.ip;
+  var session = ping.createSession();
+  debug('ping ' + ip + ' ...');
+  session.pingHost(ip, function (error, target, s, r) {
+    if (error){
+      return res.status(400).json({error: error});
+    }
+    res.status(200).json({time: r - s});
+  });
 });
 
 module.exports = router;
