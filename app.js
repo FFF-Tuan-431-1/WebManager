@@ -34,7 +34,9 @@ app.use(session({
 }));
 app.use(express.static(path.join(__dirname, 'public')));
 
+// render
 app.use('/', require('./routes/index'));
+// api
 app.use('/api', require('./routes/api'));
 
 // catch 404 and forward to error handler

@@ -3,6 +3,7 @@ var router = express.Router();
 var User = require('../models/user');
 var middleware = require('./middleware');
 
+/* POST /api/login 登录的接口 */
 router.post('/login', (req, res) => {
   var username = req.body.username;
   var password = req.body.password;
@@ -17,23 +18,15 @@ router.post('/login', (req, res) => {
     }
 
     req.session.userId = user.id;
-    res.send(200);
+    res.sendStatus(200);
   });
 });
 
 
+// 测试登录的接口
 router.get('/test', middleware.needLogin, function(req, res) {
   var userId = req.session.userId;
-  if (!userId) {
-    return res.status(400).json({error: '未登录'});
-  }
-  User.findOne({where: {id: userId}}).then((user) => {
-    if (!user) {
-      return res.status(400).json({error: '未登录'});
-    }
-
-    res.status(200).send('your username is ' + user.username);
-  });
+  res.status(200).send('your username is ' + req.user.username);
 });
 
 module.exports = router;
