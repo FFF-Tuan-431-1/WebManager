@@ -21,11 +21,13 @@ $(document).ready(function() {
           app.$table.find('tbody').html('');
 
           clients.forEach(function(client) {
-            var tr = $('<tr>').append($('<td>').text(client.id),
-                                      $('<td>').text(client.name),
-                                      $('<td>').text(client.mac),
-                                      client.isOnline ? _onlineTpl : _offlineTpl,
-                                      actions(client));
+            var tr = $('<tr>').append(
+              $('<td>').text(client.id),
+              $('<td>').text(client.name),
+              $('<td>').text(client.mac),
+              client.isOnline ? _onlineTpl.clone() : _offlineTpl.clone(),
+              actions(client)
+            );
             app.$table.find('tbody').append(tr)
           });
           app.$loading.hide();
