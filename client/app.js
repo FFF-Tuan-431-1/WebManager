@@ -12,4 +12,5 @@ socket.on('connect', function(){
   });
 });
 
-socket.on('disconnect', function(){});
+socket.on('disconnect', function(){
+});
