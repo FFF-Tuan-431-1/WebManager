@@ -22,6 +22,13 @@ router.post('/login', (req, res) => {
   });
 });
 
+/* GET /api/logout 登出的接口 */
+router.get('/logout', (req, res) => {
+  req.session.destroy(() => {
+    res.sendStatus(200);
+  });
+});
+
 
 // 测试登录的接口
 router.get('/test', middleware.needLogin, function(req, res) {

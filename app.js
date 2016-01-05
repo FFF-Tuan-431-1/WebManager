@@ -32,6 +32,7 @@ app.use(session({
   secret: 'thisisasecret',
   store: store
 }));
+app.use(require('./routes/middleware').bindUser);
 app.use(express.static(path.join(__dirname, 'public')));
 
 // render
