@@ -1,16 +1,26 @@
-var socket = require('socket.io-client')('http://localhost:3000');
+var Socket = require('socket.io-client');
 var ip = require('ip');
 var getmac = require('getmac');
+var readline = require('readline');
 
-socket.on('connect', function(){
-  console.log('connected to server');
-  getmac.getMac((err, mac) => {
-    socket.emit('info', {
-      ip: ip.address(),
-      mac: mac
-    });
-  });
+var rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
 });
 
-socket.on('disconnect', function(){
+rl.question("Please input the address ", function(address) {
+  var socket = Socket(address);
+  socket.on('connect', function(){
+    console.log('connected to server');
+    getmac.getMac((err, mac) => {
+      socket.emit('info', {
+        ip: ip.address(),
+        mac: mac
+      });
+    });
+  });
+
+  socket.on('disconnect', function(){
+  });
+  rl.close();
 });
