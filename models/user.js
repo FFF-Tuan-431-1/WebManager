@@ -13,3 +13,5 @@ var User = db.define('user', {
 User.sync().then(() => {
   debug('User sync success');
 });
+
+module.exports = User;
