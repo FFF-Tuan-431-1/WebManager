@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>网络管理系统</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link href="//cdn.bootcss.com/bootstrap/4.0.0-alpha.2/css/bootstrap.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/font-awesome-animation/0.0.7/font-awesome-animation.css" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/main.css">
+</head>
+<body>
+<div class="container">
+    <nav class="navbar navbar-dark bg-inverse">
+        <a class="navbar-brand" href="#">网络管理系统</a>
+        <ul class="nav navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="#">主页</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/home">管理主机</a>
+            </li>
+        </ul>
+
+        <form class="form-inline pull-xs-right" method="get" action="/logout">
+            <button class="btn btn-warning-outline" type="submit">登出</button>
+        </form>
+    </nav>
+
+    <div class="card">
+        <h3 class="card-header">主机信息</h3>
+        <div class="card-block">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>主机名</th>
+                        <th>Mac地址</th>
+                        <th>在线状态</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><%= client.id %></td>
+                        <td><%= client.name %> <a href="javascript:;" id="link-edit" data-id="<%= client.id%>">修改 <i class="fa fa-edit"></i></a> </td>
+                        <td><%= client.mac %></td>
+                        <% if (client.isOnline) { %>
+                            <td class="online">在线</td>
+                        <% } else { %>
+                            <td class="offline">离线</td>
+                        <% }%>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="card">
+        <h3 class="card-header">检测状态</h3>
+        <div class="card-block">
+            <button type="button" id="btn-ping" class="btn btn-primary">发送 ping 包</button>
+            <div class="placeholder"></div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h3 class="card-header">主机状态信息</h3>
+        <div class="card-block">
+            <table class="table table-striped" id="clients-table">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>状态</th>
+                    <th>IP 地址</th>
+                    <th>时间</th>
+                </tr>
+                </thead>
+                <tbody>
+                <% for(var i=0; i<states.length; i++) {%>
+                <tr>
+                    <td><%= states[i].id %></td>
+                    <td><%= states[i].state === 'online' ? '在线' : '离线' %></td>
+                    <td><%= states[i].ip %></td>
+                    <td><%= moment(states[i].time).format('LLL') %></td>
+                </tr>
+                <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+</div>
+
+<script src="//cdn.bootcss.com/jquery/2.1.4/jquery.js"></script>
+<script src="//cdn.bootcss.com/bootstrap/4.0.0-alpha.2/js/bootstrap.js"></script>
+<script src="/javascripts/client.js"></script>
+</body>
+</html>

@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <link href="//cdn.bootcss.com/bootstrap/4.0.0-alpha.2/css/bootstrap.css" rel="stylesheet">
-    <link rel="stylesheet" href="styles/main.css">
+    <link href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/font-awesome-animation/0.0.7/font-awesome-animation.css" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/main.css">
 </head>
 <body>
 <div class="container">
@@ -16,7 +18,7 @@
                 <a class="nav-link" href="#">主页</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="#">管理</a>
+                <a class="nav-link" href="#">管理主机</a>
             </li>
         </ul>
 
@@ -24,10 +26,28 @@
             <button class="btn btn-warning-outline" type="submit">登出</button>
         </form>
     </nav>
+
+
+    <table class="table" id="clients-table">
+        <thead class="thead-default">
+            <tr>
+                <th>#</th>
+                <th>名称</th>
+                <th>Mac地址</th>
+                <th>状态</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+    <div id="loading">
+        载入中 <i class="fa fa-spinner faa-spin animated"></i>
+    </div>
 </div>
 
 <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.js"></script>
 <script src="//cdn.bootcss.com/bootstrap/4.0.0-alpha.2/js/bootstrap.js"></script>
-<script src="javascripts/index.js"></script>
+<script src="javascripts/home.js"></script>
 </body>
 </html>

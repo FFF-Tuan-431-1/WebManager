@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var Client = require('../models/client').Client;
 var ping = require("net-ping");
+var debug = require('debug')('wm:routes:client');
 
 /*
  * 获取所有主机列表, 以 json 形式发送
@@ -57,6 +58,7 @@ router.get('/:id/ping', (req, res) => {
     }
     var ip = states.pop().ip;
     var session = ping.createSession();
+    debug('ping ' + ip + ' ...');
     session.pingHost(ip, function (error, target, s, r) {
       if (error){
         return res.status(400).json({error: error});
@@ -64,6 +66,14 @@ router.get('/:id/ping', (req, res) => {
       res.status(200).json({time: r - s});
     });
   })
+});
+
+/*
+ * ping 特定 ip
+ * ip 放在 req.body 中
+ */
+router.post('/ping', (req, res) => {
+
 });
 
 module.exports = router;
