@@ -1,7 +1,7 @@
 module.exports = function(socket) {
-  console.log('1111');
+  console.log('a new client is online');
 
-  socket.emit('msg', {
-    msg: 'Hello, world!'
-  });
+  socket.on('ip', function(ipAddr) {
+    console.log('remote client ip is ' + ipAddr);
+  })
 };
