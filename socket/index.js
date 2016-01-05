@@ -22,7 +22,7 @@ module.exports = function(socket) {
       return Promise.resolve(client);
     }).then(function(client) {
      return client.createState({
-        ip:data.ip,
+        ip: data.ip,
         state: 'online'
       });
     });
@@ -30,14 +30,14 @@ module.exports = function(socket) {
 
   socket.on('disconnect',function(){
     console.log(socket.data.mac);
-    Client.findOne({where:{mac:socket.data.mac}}).then((client) => {
+    Client.findOne({where:{mac: socket.data.mac}}).then((client) => {
       client.isOnline = false;
       client.save();
       return Promise.resolve(client);
     }) .then(function(client){
       return client.createState({
-        ip:socket.data.ip,
-        state:'offline'
+        ip: socket.data.ip,
+        state: 'offline'
       })
     })
   })
