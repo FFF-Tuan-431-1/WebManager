@@ -36,6 +36,13 @@ router.get('/client/:id', (req, res) => {
     });
 });
 
+router.get('/ping', (req, res) => {
+  if (!req.user) {
+    return res.redirect('/');
+  }
+  res.render('ping');
+});
+
 router.get('/logout', middleware.needLogin, (req, res) => {
   req.session.destroy(() => {
     res.redirect('/');

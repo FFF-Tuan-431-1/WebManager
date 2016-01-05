@@ -17,10 +17,10 @@
             <li class="nav-item">
                 <a class="nav-link" href="#">主页</a>
             </li>
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="/home">管理主机</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="/ping">检测连接</a>
             </li>
         </ul>
@@ -31,26 +31,25 @@
     </nav>
 
 
-    <table class="table" id="clients-table">
-        <thead class="thead-default">
-            <tr>
-                <th>#</th>
-                <th>名称</th>
-                <th>Mac地址</th>
-                <th>状态</th>
-                <th>操作</th>
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
-    <div id="loading">
-        载入中 <i class="fa fa-spinner faa-spin animated"></i>
+    <div class="card">
+        <h3 class="card-header">测试连接</h3>
+        <div class="card-block">
+            <form class="form-inline" id="form-ping">
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-addon">ip 地址</div>
+                        <input type="text" class="form-control" id="ipAddr" placeholder="请输入ip地址">
+                    </div>
+                </div>
+                <button type="submit" id="btn-ping" class="btn btn-primary">Ping!</button>
+                <div class="placeholder"></div>
+            </form>
+        </div>
     </div>
 </div>
 
 <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.js"></script>
 <script src="//cdn.bootcss.com/bootstrap/4.0.0-alpha.2/js/bootstrap.js"></script>
-<script src="javascripts/home.js"></script>
+<script src="javascripts/ping.js"></script>
 </body>
 </html>
