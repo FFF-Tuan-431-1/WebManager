@@ -8,8 +8,8 @@ module.exports = function(socket) {
   console.log('a new client is online');
 
   socket.on('info', function(data) {
-    console.log('remote client ip is ' + data.ip);
-    console.log('remote client mac is ' + data.mac);
+    console.log('online client ip is ' + data.ip);
+    console.log('online client mac is ' + data.mac);
 
     socket.data = data;
 
@@ -26,11 +26,12 @@ module.exports = function(socket) {
         state: 'online'
       });
     });
-  })
+  });
 
   socket.on('disconnect',function(){
-    console.log(socket.data.mac);
-    Client.findOne({where:{mac: socket.data.mac}}).then((client) => {
+    console.log('offline client mac is ' + socket.data.mac);
+
+    Client.findOne({where: {mac: socket.data.mac}}).then((client) => {
       client.isOnline = false;
       client.save();
       return Promise.resolve(client);
@@ -40,5 +41,5 @@ module.exports = function(socket) {
         state: 'offline'
       })
     })
-  })
+  });
 };
