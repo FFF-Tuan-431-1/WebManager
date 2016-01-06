@@ -18,9 +18,22 @@ router.post('/', (raq, res) => {
   }).catch(err => {
     //mac地址和主机名任一重复时发生错误
     res.status(400).json(err);
-  })
+  });
+});
 
-})
+/*
+*搜索特定主机
+* 主机名:req.query.name
+*/
+router.get('/search',(req, res) => {
+  name = req.query.name;
+  Client.findOne({where: {name: name}}).then(client => {
+    if(!client) {
+      return res.status(400).json({error: 'client is not exist'});
+    }
+    res.status(200).json({id: client.id});
+  });
+});
 
 /*
  * 获取所有主机列表, 以 json 形式发送
@@ -28,7 +41,7 @@ router.post('/', (raq, res) => {
 router.get('/', (req, res) => {
   Client.findAll().then(clients => {
     if (!clients) {
-      return res.status(400).json({error: 'clients is not exist'})
+      return res.status(400).json({error: 'clients is not exist'});
     }
     res.status(200).json(clients);
   })
@@ -40,7 +53,7 @@ router.get('/', (req, res) => {
 router.put('/:id', (req, res) => {
   Client.findOne({where: {id: req.params.id}}).then(client => {
     if (!client) {
-      return res.status(400).json({error: 'client is not exist'})
+      return res.status(400).json({error: 'client is not exist'});
     }
     client.name = req.body.name;
     client.save().then(() => res.sendStatus(200));
@@ -53,12 +66,12 @@ router.put('/:id', (req, res) => {
 router.get('/:id/state', (req, res) => {
   Client.findOne({where: {id: req.params.id}}).then(client => {
     if (!client) {
-      return res.status(400).json({error: 'client is not exist'})
+      return res.status(400).json({error: 'client is not exist'});
     }
     return client.getStates();
   }).then((states) => {
     res.status(200).json(states);
-  })
+  });
 });
 
 /*

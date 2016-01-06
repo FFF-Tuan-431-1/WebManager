@@ -28,7 +28,7 @@ $(document).ready(function() {
               client.isOnline ? _onlineTpl.clone() : _offlineTpl.clone(),
               actions(client)
             );
-            app.$table.find('tbody').append(tr)
+            app.$table.find('tbody').append(tr);
           });
           app.$loading.hide();
         });
