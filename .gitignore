@@ -31,6 +31,3 @@ npm-debug.log
 
 # IDEA files
 .idea
-
-# static files
-public/styles
