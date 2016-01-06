@@ -5,6 +5,24 @@ var ping = require("net-ping");
 var debug = require('debug')('wm:routes:client');
 
 /*
+* 往主机列表中增加一个特定主机，
+* mac 为 req.body.mac,
+* 主机名 为 req.body.name
+*/
+router.post('/', (raq, res) => {
+  var mac = req.body.mac;
+  var name = req.body.name;
+
+  Client.create({name, mac}).then(client => {
+    res.sendStatus(200);
+  }).catch(err => {
+    //mac地址和主机名任一重复时发生错误
+    res.status(400).json(err);
+  })
+
+})
+
+/*
  * 获取所有主机列表, 以 json 形式发送
  */
 router.get('/', (req, res) => {
@@ -85,3 +103,5 @@ router.post('/ping', (req, res) => {
 });
 
 module.exports = router;
+
+
