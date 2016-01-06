@@ -3,6 +3,8 @@ $(document).ready(function() {
     e.preventDefault();
 
     var $btn = $('#btn-ping');
+    $btn.html($('<span>加载中 <i class="fa fa-spinner faa-spin animated"></i></span>'));
+    $('.placeholder').text('').removeClass('success error');
     $.ajax({
       url: '/api/client/ping',
       data: JSON.stringify({ip: $('#ipAddr').val()}),
