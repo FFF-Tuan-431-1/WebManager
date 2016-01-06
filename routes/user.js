@@ -16,7 +16,7 @@ router.post('/', function(req, res) {
     res.sendStatus(200);
   }).catch(err => {
     // 发生错误一般都是用户名重复了
-    res.status(400).json(err);
+    res.status(400).json({error: '该用户名已被使用'});
   })
 });
 
