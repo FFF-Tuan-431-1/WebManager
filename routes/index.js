@@ -49,4 +49,11 @@ router.get('/logout', middleware.needLogin, (req, res) => {
   });
 });
 
+router.get('/search', (req, res) => {
+  if (!req.user) {
+    return res.redirect('/');
+  }
+  res.render('search');
+});
+
 module.exports = router;
