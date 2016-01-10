@@ -11,8 +11,8 @@ module.exports = function(socket) {
     console.log('online client ip is ' + data.ip);
     console.log('online client mac is ' + data.mac);
 
-    data.mac.replace(/:/g, '-');
-    data.mac.toUpperCase();
+    data.mac = data.mac.replace(/:/g, '-');
+    data.mac = data.mac.toUpperCase();
     socket.data = data;
 
     Client.findOne({where: {mac: data.mac}}).then((client) => {
