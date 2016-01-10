@@ -30,15 +30,28 @@
         </form>
     </nav>
     <div class="card">
-        <form class="form-inline" id="form-creation">
         <h3 class="card-header">新增主机</h3>
         <div class="card-block">
-            <input type="text" class="form-control" id="nameCreate" placeholder="请输入主机名">
-            <input type="text" class="form-control" id="macCreate" placeholder="请输入mac">
-            <button type="submit" id="btn-create" class="btn btn-primary">添加主机</button>
-            <div class="placeholder"><p>(mac地址格式为xx-xx-xx-xx-xx-xx)</p></div>
-        </div>
+            <form id="form-creation">
+                <div class="form-group row">
+                    <label for="nameCreate" class="col-sm-2 form-control-label">主机名</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="client-name" placeholder="请输入主机名">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="macCreate" class="col-sm-2 form-control-label">主机名</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="client-mac" placeholder="请输入 Mac 地址, 格式为: xx-xx-xx-xx-xx-xx">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-offset-2 col-sm-6">
+                        <button type="submit" class="btn btn-secondary" id="btn-create">添加主机</button>
+                    </div>
+                </div>
             </form>
+        </div>
     </div>
 
     <table class="table" id="clients-table">
@@ -62,6 +75,5 @@
 <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.js"></script>
 <script src="//cdn.bootcss.com/bootstrap/4.0.0-alpha.2/js/bootstrap.js"></script>
 <script src="javascripts/home.js"></script>
-<script src="javascripts/create.js"></script>
 </body>
 </html>
