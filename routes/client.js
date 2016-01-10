@@ -85,14 +85,14 @@ router.get('/:id/state', (req, res) => {
  * ping 主机, id 为 req.param.id
  */
 router.get('/:id/ping', (req, res) => {
-  Client.findOne({where: {id: req.params.id}}).then(cient => {
+  Client.findOne({where: {id: req.params.id}}).then(client => {
     if (!client) {
       return res.status(400).json({error: 'client is not exist'})
     }
     return client.getStates();
   }).then((states) => {
-    if (!states) {
-      return res.status(400).json({error: 'not knowing its ip'});
+    if (states.length === 0) {
+      return res.status(400).json({error: {message: '该主机没有历史IP'}});
     }
     var ip = states.pop().ip;
     var session = ping.createSession();

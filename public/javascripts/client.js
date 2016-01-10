@@ -25,7 +25,7 @@ $(document).ready(function() {
         }, 500);
     }, function(res) {
       $btn.text('发送 ping 包');
-        $('.placeholder').text('ping 失败, 错误为 ' + res.responseJSON.error.message).addClass('error');
+        $('.placeholder').text('ping 失败, 错误为: ' + res.responseJSON.error.message).addClass('error');
     })
   });
 });
