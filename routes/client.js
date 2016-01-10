@@ -9,7 +9,7 @@ var debug = require('debug')('wm:routes:client');
 * mac 为 req.body.mac,
 * 主机名 为 req.body.name
 */
-router.post('/', (raq, res) => {
+router.post('/creation', (req, res) => {
   var mac = req.body.mac;
   var name = req.body.name;
 
@@ -78,7 +78,7 @@ router.get('/:id/state', (req, res) => {
  * ping 主机, id 为 req.param.id
  */
 router.get('/:id/ping', (req, res) => {
-  Client.findOne({where: {id: req.params.id}}).then(client => {
+  Client.findOne({where: {id: req.params.id}}).then(cient => {
     if (!client) {
       return res.status(400).json({error: 'client is not exist'})
     }
