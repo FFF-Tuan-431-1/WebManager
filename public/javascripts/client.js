@@ -2,6 +2,9 @@ $(document).ready(function() {
   $('#link-edit').click(function(e) {
     e.preventDefault();
     var newName = window.prompt('请输入新的主机名');
+    if (!newName) {
+      return ;
+    }
     $.ajax({
       url: '/api/client/' + $('#link-edit').data('id'),
       data: JSON.stringify({name: newName}),
