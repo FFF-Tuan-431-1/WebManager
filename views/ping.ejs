@@ -40,9 +40,13 @@
                         <div class="input-group-addon">ip 地址</div>
                         <input type="text" class="form-control" id="ipAddr" placeholder="请输入ip地址">
                     </div>
+                    <div class="input-group">
+                        <div class="input-group-addon">子网掩码</div>
+                        <input type="text" class="form-control" id="subnetMask" value="255.255.255.255" placeholder="请输入子网掩码">
+                    </div>
                 </div>
                 <button type="submit" id="btn-ping" class="btn btn-primary">Ping!</button>
-                <div class="placeholder"></div>
+                <div class="placeholders"></div>
             </form>
         </div>
     </div>
@@ -50,6 +54,7 @@
 
 <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.js"></script>
 <script src="//cdn.bootcss.com/bootstrap/4.0.0-alpha.2/js/bootstrap.js"></script>
+<script src="javascripts/ip.js"></script>
 <script src="javascripts/ping.js"></script>
 </body>
 </html>

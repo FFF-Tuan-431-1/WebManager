@@ -5,6 +5,7 @@ var State = require('../models/client').State;
 var ping = require("net-ping");
 var debug = require('debug')('wm:routes:client');
 var getmac = require('getmac');
+var session = ping.createSession();
 
 /*
 * 往主机列表中增加一个特定主机，
@@ -107,7 +108,6 @@ router.get('/:id/ping', (req, res) => {
       return res.status(400).json({error: {message: '该主机没有历史IP'}});
     }
     var ip = states.pop().ip;
-    var session = ping.createSession();
     debug('ping ' + ip + ' ...');
     session.pingHost(ip, function (error, target, s, r) {
       if (error){
@@ -124,7 +124,6 @@ router.get('/:id/ping', (req, res) => {
  */
 router.post('/ping', (req, res) => {
   var ip = req.body.ip;
-  var session = ping.createSession();
   debug('ping ' + ip + ' ...');
   session.pingHost(ip, function (error, target, s, r) {
     if (error){
