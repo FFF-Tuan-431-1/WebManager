@@ -3,16 +3,23 @@ var router = express.Router();
 var Client = require('../models/client').Client;
 var ping = require("net-ping");
 var debug = require('debug')('wm:routes:client');
+var getmac = require('getmac');
 
 /*
 * 往主机列表中增加一个特定主机，
 * mac 为 req.body.mac,
 * 主机名 为 req.body.name
 */
-router.post('/creation', (req, res) => {
+router.post('/', (req, res) => {
   var mac = req.body.mac;
   var name = req.body.name;
 
+  if(getmac.isMac(mac)){
+    mac = mac.trim().toUpperCase();
+    mac = mac.replace(/:/g, '-');
+  }else{
+    return res.status(400).json({error: 'mac is wrong'});
+  }
   Client.create({name, mac}).then(client => {
     res.sendStatus(200);
   }).catch(err => {

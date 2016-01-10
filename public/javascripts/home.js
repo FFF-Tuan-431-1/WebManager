@@ -47,7 +47,7 @@ $(document).ready(function() {
         }
 
         $.ajax({
-          url: '/api/client/creation',
+          url: '/api/client',
           data: JSON.stringify({mac: $('#client-mac').val(), name:$('#client-name').val()}),
           method: 'post',
           contentType: "application/json; charset=utf-8"
