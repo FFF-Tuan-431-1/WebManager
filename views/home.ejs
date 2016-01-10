@@ -29,7 +29,30 @@
             <button class="btn btn-warning-outline" type="submit">登出</button>
         </form>
     </nav>
-
+    <div class="card">
+        <h3 class="card-header">新增主机</h3>
+        <div class="card-block">
+            <form id="form-creation">
+                <div class="form-group row">
+                    <label for="nameCreate" class="col-sm-2 form-control-label">主机名</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="client-name" placeholder="请输入主机名">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="macCreate" class="col-sm-2 form-control-label">主机名</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" id="client-mac" placeholder="请输入 Mac 地址, 格式为: xx-xx-xx-xx-xx-xx">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-offset-2 col-sm-6">
+                        <button type="submit" class="btn btn-secondary" id="btn-create">添加主机</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 
     <table class="table" id="clients-table">
         <thead class="thead-default">
