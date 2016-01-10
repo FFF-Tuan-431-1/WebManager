@@ -34,8 +34,6 @@ $(document).ready(function() {
   $('#form-ping').submit(function(e) {
     e.preventDefault();
 
-    // var $btn = $('#btn-ping');
-    // $btn.html($('<span>加载中 <i class="fa fa-spinner faa-spin animated"></i></span>'));
     $('.placeholders').html('');
 
     var ips = [];
