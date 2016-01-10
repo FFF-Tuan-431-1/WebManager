@@ -15,6 +15,16 @@ $(document).ready(function() {
     });
   });
 
+  $('#link-delete').click(function(e) {
+    e.preventDefault();
+    $.ajax({
+      url: '/api/client/' + $('#link-delete').data('id'),
+      method: 'delete',
+    }).then(function() {
+      window.location.href = '/home';
+    });
+  });
+
   $('#btn-ping').click(function(e) {
     e.preventDefault();
     var $btn = $(this);

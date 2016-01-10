@@ -45,7 +45,10 @@
                 <tbody>
                     <tr>
                         <td><%= client.id %></td>
-                        <td><%= client.name %> <a href="javascript:;" id="link-edit" data-id="<%= client.id%>">修改 <i class="fa fa-edit"></i></a> </td>
+                        <td><%= client.name %>
+                            <a href="javascript:;" id="link-edit" data-id="<%= client.id%>">修改 <i class="fa fa-edit"></i></a>
+                            <a href="javascript:;" id="link-delete" data-id="<%= client.id%>">删除 <i class="fa fa-trash-o"></i></a>
+                        </td>
                         <td><%= client.mac %></td>
                         <% if (client.isOnline) { %>
                             <td class="online">在线</td>

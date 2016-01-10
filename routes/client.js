@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Client = require('../models/client').Client;
+var State = require('../models/client').State;
 var ping = require("net-ping");
 var debug = require('debug')('wm:routes:client');
 var getmac = require('getmac');
@@ -65,6 +66,17 @@ router.put('/:id', (req, res) => {
     client.name = req.body.name;
     client.save().then(() => res.sendStatus(200));
   })
+});
+
+/*
+ * 删除 id 为 req.param.id 的主机名字
+ */
+router.delete('/:id', (req, res) => {
+  State.destroy({where: {clientId: req.params.id}}).then(() => {
+    return Client.destroy({where: {id: req.params.id}});
+  }).then(() => {
+    res.sendStatus(200);
+  });
 });
 
 /*
