@@ -26,7 +26,7 @@ router.post('/', (raq, res) => {
 * 主机名:req.query.name
 */
 router.get('/search',(req, res) => {
-  name = req.query.name;
+  var name = req.query.name;
   Client.findOne({where: {name: name}}).then(client => {
     if(!client) {
       return res.status(400).json({error: 'client is not exist'});
