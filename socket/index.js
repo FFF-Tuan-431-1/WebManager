@@ -15,33 +15,46 @@ module.exports = function(socket) {
     data.mac = data.mac.toUpperCase();
     socket.data = data;
 
+    var c = null;
+
     Client.findOne({where: {mac: data.mac}}).then((client) => {
       if (!client) {
         return Client.create({mac: data.mac, name: randomString(), isOnline:true});
       }
+      c = client;
       client.isOnline = true;
-      client.save();
-      return Promise.resolve(client);
-    }).then(function(client) {
-     return client.createState({
+      return client.save();
+    }).then(function() {
+      return c.getStates();
+    }).then(function(states) {
+      if (states.length && states[states.length - 1].state === 'online') {
+        return Promise.resolve(null);
+      }
+      return c.createState({
         ip: data.ip,
         state: 'online'
-      });
+      })
     });
   });
 
   socket.on('disconnect',function(){
     console.log('offline client mac is ' + socket.data.mac);
+    var c = null;
 
     Client.findOne({where: {mac: socket.data.mac}}).then((client) => {
       client.isOnline = false;
-      client.save();
-      return Promise.resolve(client);
-    }) .then(function(client){
-      return client.createState({
+      c = client;
+      return client.save();
+    }) .then(function(){
+      return c.getStates();
+    }).then(function(states) {
+      if (states.length && states[states.length - 1].state === 'offline') {
+        return Promise.resolve(null);
+      }
+      return c.createState({
         ip: socket.data.ip,
         state: 'offline'
       })
-    })
+    });
   });
 };
