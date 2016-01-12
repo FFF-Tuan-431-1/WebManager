@@ -23,3 +23,8 @@
 .placeholder.error {
   color: #e74c3c;
 }
+
+line.timeline{
+  stroke-width: 2px;
+  stroke: #222;
+}
