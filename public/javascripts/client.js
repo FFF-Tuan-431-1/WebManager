@@ -51,7 +51,7 @@ $(document).ready(function() {
       };
     });
 
-    var formatDate = d3.time.format('%d日%H:%m');
+    var formatDate = d3.time.format('%d日%H:%M' );
 
     var options =   {
       margin: {left: 20, right: 20, top: 20, bottom: 20},
